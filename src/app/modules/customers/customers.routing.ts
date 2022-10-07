@@ -9,7 +9,7 @@ export const CustomersRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(CustomersRoutes)],
+  imports: [],
   exports: [RouterModule]
 })
 
