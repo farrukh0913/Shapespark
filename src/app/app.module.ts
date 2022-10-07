@@ -5,6 +5,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from "@angular/common/http";
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -15,7 +22,14 @@ import {MatButtonModule} from '@angular/material/button';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatIconModule,
+    HttpClientModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
