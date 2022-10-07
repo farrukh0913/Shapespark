@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { customersRoutes, CustomersRoutingModule } from './customers.routing';
-import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomersComponent } from './customers/customers.component';
+import { MaterialModule } from '../material-module';
 
 @NgModule({
   declarations: [CustomersComponent, CustomerDetailComponent],
   imports: [
     CustomersRoutingModule,
     CommonModule,
-    MatTableModule,
+    MaterialModule,
     RouterModule.forChild(customersRoutes)
    ]
 })

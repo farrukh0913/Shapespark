@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
+import { CustomersService } from '../customers.service';
 
 @Component({
   selector: 'app-customers',
@@ -15,6 +16,7 @@ export class CustomersComponent {
   title = 'Shapespark';
   dataSource: any;
   displayedColumns: any[] = [];
+  constructor(private readonly customersService: CustomersService){ }
 
   /**
    * Pre-defined columns list for user table
@@ -39,6 +41,9 @@ export class CustomersComponent {
   ngOnInit() {
     this.displayedColumns = this.columnNames.map(x => x.id);
     this.createTable();
+    this.customersService.getCustomers().subscribe(data =>{
+      console.log('data:123 ', data);
+    });
   }
 
   createTable() {
