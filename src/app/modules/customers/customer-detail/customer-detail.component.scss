@@ -1,0 +1,31 @@
+.header{
+    margin: 20px;
+}
+
+img{
+    height: 70px;
+}
+
+.logo{
+    height: 30px;
+}
+
+.name{
+    margin-left: 20px;
+}
+
+.btn-edit{
+    width: -webkit-fill-available;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card{
+    border: 1px solid rgb(162, 160, 160);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
