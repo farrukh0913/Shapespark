@@ -44,10 +44,14 @@ export class EditCustomerDetailComponent {
     }
   }
 
-  cancel(){
+  close(){
     this.dialogRef.close();
   }
 
-  save(){}
+  save(){
+    if (this.customerForm.valid){
+      this.close();
+    }
+  }
 
 }

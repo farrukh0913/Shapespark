@@ -16,4 +16,8 @@ import { HttpClient } from '@angular/common/http';
       return this.http.get('../assets/customer-detail.json');
     }
 
+    updateCustomerDetail() {
+      return this.http.put('../assets/customer-detail.json'+this.login[0].id,this.login[0]).subscribe();
+    }
+
   }
