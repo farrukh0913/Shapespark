@@ -50,8 +50,8 @@ export class CustomerDetailComponent {
 
   editCustomer() {
     const dialogRef = this.dialog.open(EditCustomerDetailComponent, {
-      height: '80%',
-      width: '60%',
+      height: '75%',
+      width: '500px',
       data: { name: this.name, description: this.description, image: this.image }
     });
 
