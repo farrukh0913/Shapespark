@@ -5,16 +5,16 @@
         <div class="card mb-1">
             <div class="card-body info">
                 <div class="info">
-                    <img src="./assets/images/logo1.png">
+                    <img [src]="image">
                     <div class="name">
-                        <span><b>Name: </b> Farrukh Shahzad</span><br />
-                        <span><b>Description: </b> Angular developer </span>
+                        <span><b>Name: </b> {{ name }}</span><br />
+                        <span><b>Description: </b> {{ description }} </span>
                     </div>
                 </div>
 
                 <div>
-                    <button mat-raised-button>Scheduling</button><br />
-                    <button mat-raised-button class="mt-2 btn-edit">Edit</button>
+                    <button mat-stroked-button color="primary">Scheduling</button><br />
+                    <button mat-stroked-button color="primary" class="mt-2 btn-edit" (click)="editCustomer()">Edit</button>
                 </div>
 
             </div>
