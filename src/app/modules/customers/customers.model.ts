@@ -11,3 +11,11 @@ export interface ICustomersList {
     noOfGroups: number;
     logo: string;
 }
+
+export interface ICustomerDetail {
+    color: string;
+    description: string;
+    id: string;
+    name: string;
+    noOfVms: number;
+}

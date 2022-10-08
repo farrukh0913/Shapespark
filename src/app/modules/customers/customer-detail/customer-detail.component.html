@@ -1,21 +1,21 @@
 <h2 class="header">Customers Detail With Groups</h2>
 
-<div class="container">
-        <div class="card">
-           <div class="card">
+<div class="container" style="width: 100%; height: 100%;">
+    <div class="card">
+        <div class="card mb-1">
             <div class="card-body info">
-             <div class="info">
-              <img src="./assets/images/logo1.png">
-                <div class="name" >
-              <span><b>Name: </b> Farrukh Shahzad</span><br/>
-              <span><b>Description: </b> Angular developer </span>
-            </div>
-            </div>
+                <div class="info">
+                    <img src="./assets/images/logo1.png">
+                    <div class="name">
+                        <span><b>Name: </b> Farrukh Shahzad</span><br />
+                        <span><b>Description: </b> Angular developer </span>
+                    </div>
+                </div>
 
-            <div>
-              <button mat-raised-button>Scheduling</button><br/>
-              <button mat-raised-button class="mt-2 btn-edit">Edit</button>
-            </div>
+                <div>
+                    <button mat-raised-button>Scheduling</button><br />
+                    <button mat-raised-button class="mt-2 btn-edit">Edit</button>
+                </div>
 
             </div>
         </div>
@@ -23,19 +23,19 @@
             <div class="card-body">
                 <mat-table #table [dataSource]="dataSource" matSort>
                     <ng-container matColumnDef="name">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> Group Name</mat-header-cell>
-                      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Group Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="color">
+                    <ng-container matColumnDef="noOfVms">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Number of VMs</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.color}}</mat-cell>
-                      </ng-container>
+                        <mat-cell *matCellDef="let element"> {{element.noOfVms}}</mat-cell>
+                    </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)"></mat-row>
-                  </mat-table>
+                </mat-table>
             </div>
         </div>
-        </div>
-  </div>
+    </div>
+</div>

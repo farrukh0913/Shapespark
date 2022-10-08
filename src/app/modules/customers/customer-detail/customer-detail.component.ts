@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { CustomersService } from '../customers.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { ICustomersList, ITableColumns } from '../customers.model';
+import { ICustomerDetail, ICustomersList, ITableColumns } from '../customers.model';
 
 @Component({
   selector: 'app-customer-detail',
@@ -21,16 +21,13 @@ export class CustomerDetailComponent {
   ngOnInit() {
     this.columnNames = [
       { id: 'name', value: 'Name' },
-      { id: 'color', value: 'Color' },
-      { id: 'noOfGroups', value: 'No of Groups' },
-      { id: 'logo', value: 'Logo' },
+      { id: 'noOfVms', value: 'No of VMs' },
   ];
 
   this.displayedColumns = this.columnNames.map(column => column.id);
-    this.customersService.getCustomers().pipe(take(1)).subscribe((customersData: any) =>{
-      console.log('customers-detail:123 ', customersData);
-      const customersList: ICustomersList[] = customersData;
-      this.dataSource = new MatTableDataSource(customersList);
+    this.customersService.getGroups().pipe(take(1)).subscribe((detail: any) =>{
+      const customerDetail: ICustomerDetail[] = detail;
+      this.dataSource = new MatTableDataSource(customerDetail);
     });
 
   }

@@ -12,4 +12,8 @@ import { HttpClient } from '@angular/common/http';
       return this.http.get('../assets/customers.json');
     }
 
+    getGroups() {
+      return this.http.get('../assets/customer-detail.json');
+    }
+
   }
