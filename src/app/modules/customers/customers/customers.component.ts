@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { CustomersService } from '../customers.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { ICustomersList, ITableColumns } from '../customers.model';
 
 @Component({
@@ -12,12 +13,13 @@ import { ICustomersList, ITableColumns } from '../customers.model';
 })
 
 export class CustomersComponent {
+  @ViewChild(MatSort) sort!: MatSort;
+  dataSource!: MatTableDataSource<ICustomersList>;
   title = 'Shapespark';
-  dataSource: any;
   displayedColumns: string[] = [];
   columnNames: ITableColumns[] = [];
 
-  constructor(private readonly customersService: CustomersService, private readonly router: Router){ }
+  constructor(private readonly customersService: CustomersService, private readonly router: Router) { }
 
   ngOnInit() {
     this.columnNames = [
@@ -25,20 +27,19 @@ export class CustomersComponent {
       { id: 'color', value: 'Color' },
       { id: 'noOfGroups', value: 'No of Groups' },
       { id: 'logo', value: 'Logo' },
-  ];
+    ];
 
-  this.displayedColumns = this.columnNames.map(column => column.id);
-
-
-    this.customersService.getCustomers().pipe(take(1)).subscribe((customersData: any) =>{
+    this.displayedColumns = this.columnNames.map(column => column.id);
+    this.customersService.getCustomers().pipe(take(1)).subscribe((customersData: any) => {
       console.log('customersData:123 ', customersData);
       const customersList: ICustomersList[] = customersData;
       this.dataSource = new MatTableDataSource(customersList);
+      this.dataSource.sort = this.sort;
     });
   }
 
-  onRowClick(row: ICustomersList){
-    this.router.navigate(["/customers/customer-detail"], {queryParams: { id: row.id }});
+  onRowClick(row: ICustomersList) {
+    this.router.navigate(["/customers/customer-detail"], { queryParams: { id: row.id } });
   }
 
 }

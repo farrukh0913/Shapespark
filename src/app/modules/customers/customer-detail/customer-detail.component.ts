@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { EditCustomerDetailComponent } from '../edit-customer-detail/edit-customer-detail.component';
@@ -14,7 +15,8 @@ import { ICustomerDetail, ICustomersList, ITableColumns } from '../customers.mod
 })
 
 export class CustomerDetailComponent {
-  dataSource: any;
+  @ViewChild(MatSort) sort!: MatSort;
+  dataSource!: MatTableDataSource<ICustomerDetail>;
   name: string = '';
   description: string = '';
   image: string = '';
@@ -24,7 +26,9 @@ export class CustomerDetailComponent {
   constructor(
     private readonly customersService: CustomersService,
     private readonly dialog: MatDialog,
-    private readonly router: Router) { }
+    private readonly router: Router) {
+    this.dataSource = new MatTableDataSource();
+  }
 
   ngOnInit() {
     this.name = 'Farrukh Shahzad';
@@ -40,6 +44,7 @@ export class CustomerDetailComponent {
     this.customersService.getGroups().pipe(take(1)).subscribe((detail: any) => {
       const customerDetail: ICustomerDetail[] = detail;
       this.dataSource = new MatTableDataSource(customerDetail);
+      this.dataSource.sort = this.sort;
     });
 
   }
@@ -56,7 +61,7 @@ export class CustomerDetailComponent {
     });
 
     dialogRef.afterClosed().pipe(take(1)).subscribe(result => {
-      console.log(`Dialog result: ${result}`); // Pizza!
+      console.log(`Dialog result: ${result}`);
     });
   }
 

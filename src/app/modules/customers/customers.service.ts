@@ -5,15 +5,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 
-  export class CustomersService {
+export class CustomersService {
 
-    constructor(private readonly http: HttpClient) { }
-    getCustomers() {
-      return this.http.get('../assets/customers.json');
-    }
-
-    getGroups() {
-      return this.http.get('../assets/customer-detail.json');
-    }
-
+  constructor(private readonly http: HttpClient) { }
+  getCustomers() {
+    return this.http.get('../assets/customers.json');
   }
+
+  getGroups() {
+    return this.http.get('../assets/customer-detail.json');
+  }
+
+}
