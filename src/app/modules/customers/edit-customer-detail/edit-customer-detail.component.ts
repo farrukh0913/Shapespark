@@ -1,10 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { CustomersService } from '../customers.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { ICustomerDetail, ICustomersList, ITableColumns } from '../customers.model';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ICustomerDetail } from '../customers.model';
 
 @Component({
   selector: 'app-edit-customer-detail',
@@ -14,15 +11,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class EditCustomerDetailComponent {
   public customerForm: FormGroup;
+  url: string = '';
 
-  constructor(private readonly fb: FormBuilder){
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly cd: ChangeDetectorRef,
+    public readonly dialogRef: MatDialogRef<EditCustomerDetailComponent, ICustomerDetail>,
+    @Inject(MAT_DIALOG_DATA) public customerDetail: ICustomerDetail
+    ) {
     this.customerForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      image: ['', Validators.required],
-    })
+      image: [null, Validators.required],
+    });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('this.customerDetail: ', this.customerDetail);
+    this.url = this.customerDetail.image;
+    this.customerForm.patchValue({name: this.customerDetail.name, description: this.customerDetail.description, image: this.url})
+  }
+
+  onSelectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+        this.customerForm.patchValue({image: this.url});
+      }
+    }
+  }
+
+  cancel(){
+    this.dialogRef.close();
+  }
+
+  save(){}
 
 }

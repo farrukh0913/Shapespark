@@ -1,5 +1,7 @@
 <div class="container">
     <h2 style="text-align: center">Edit Customer</h2>
+
+    <!-- Form Section -->
     <div class="row">
         <div class="col col-md-12">
             <form [formGroup]="customerForm">
@@ -16,20 +18,30 @@
                     </mat-form-field>
                 </div>
 
-                <div class="mb-3">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Image</mat-label>
-                        <input matInput formControlName="image">
-                    </mat-form-field>
+                <!-- Image Section -->
+                <div class="row mb-3">
+                    <div class="col col-md-6">
+                        <label class="custom-file-upload">
+                            <input type="file" accept=".jpg, .png" formControlName="image" (change)="onSelectFile($event)" />
+                            <div class="upload">
+                            <mat-icon>add_photo_alternate</mat-icon>
+                            <span >Upload Image</span>
+                        </div>
+                        </label>
+                    </div>
+
+                    <div class="col col-md-6">
+                        <img [src]="url" height="100" width="100"> <br />
+                    </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col col-md-6">
-                        <button type="button" mat-raised-button>Cancel</button>
+                        <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
                     </div>
 
                     <div class="col col-md-6">
-                        <button type="button" mat-raised-button color="primary">Submit</button>
+                        <button type="button" mat-raised-button color="primary" (click)="save()">Save</button>
                     </div>
                 </div>
 

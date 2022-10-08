@@ -18,4 +18,5 @@ export interface ICustomerDetail {
     id: string;
     name: string;
     noOfVms: number;
+    image: string;
 }
