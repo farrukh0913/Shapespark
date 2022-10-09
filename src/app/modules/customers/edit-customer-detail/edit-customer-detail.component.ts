@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICustomerDetail } from '../customers.model';
 
 @Component({
-  selector: 'app-edit-customer-detail',
+  selector: 'edit-customer-detail',
   templateUrl: './edit-customer-detail.component.html',
   styleUrls: ['./edit-customer-detail.component.scss']
 })
@@ -15,7 +15,6 @@ export class EditCustomerDetailComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly cd: ChangeDetectorRef,
     public readonly dialogRef: MatDialogRef<EditCustomerDetailComponent, ICustomerDetail>,
     @Inject(MAT_DIALOG_DATA) public customerDetail: ICustomerDetail
     ) {
@@ -35,7 +34,6 @@ export class EditCustomerDetailComponent {
   onSelectFile(event: any) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event: any) => { // called once readAsDataURL is completed
         this.url = event.target.result;
@@ -44,14 +42,12 @@ export class EditCustomerDetailComponent {
     }
   }
 
-  close(){
-    this.dialogRef.close();
+  save(){
+      this.dialogRef.close(this.customerForm.value);
   }
 
-  save(){
-    if (this.customerForm.valid){
-      this.close();
-    }
+  close(){
+    this.dialogRef.close();
   }
 
 }

@@ -7,7 +7,7 @@ import { CustomersService } from '../customers.service';
 import { ICustomersList, ITableColumns } from '../customers.model';
 
 @Component({
-  selector: 'app-customers',
+  selector: 'customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss']
 })

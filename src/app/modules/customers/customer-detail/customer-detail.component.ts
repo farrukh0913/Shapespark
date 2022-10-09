@@ -9,7 +9,7 @@ import { CustomersService } from '../customers.service';
 import { ICustomerDetail, ICustomersList, ITableColumns } from '../customers.model';
 
 @Component({
-  selector: 'app-customer-detail',
+  selector: 'customer-detail',
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.scss']
 })
@@ -54,14 +54,15 @@ export class CustomerDetailComponent {
   }
 
   editCustomer() {
-    const dialogRef = this.dialog.open(EditCustomerDetailComponent, {
-      height: '75%',
-      width: '500px',
+    this.dialog.open(EditCustomerDetailComponent, { height: '75%', width: '500px',
       data: { name: this.name, description: this.description, image: this.image }
-    });
-
-    dialogRef.afterClosed().pipe(take(1)).subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    }).afterClosed().pipe(take(1)).subscribe((updatedCustomerDetail: ICustomerDetail) => {
+      if (updatedCustomerDetail){
+        console.log(`onClose updatedCustomerDetail:`, updatedCustomerDetail.name);
+        this.name = updatedCustomerDetail.name;
+        this.description = updatedCustomerDetail.description;
+        this.image = updatedCustomerDetail.image;
+      }
     });
   }
 
