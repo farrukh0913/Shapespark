@@ -55,7 +55,8 @@ export class CustomerDetailComponent {
 
   editCustomer() {
     this.dialog.open(EditCustomerDetailComponent, { height: '75%', width: '500px',
-      data: { name: this.name, description: this.description, image: this.image }
+      data: { name: this.name, description: this.description, image: this.image },
+      panelClass: ['animate__animated','animate__slideInDown']
     }).afterClosed().pipe(take(1)).subscribe((updatedCustomerDetail: ICustomerDetail) => {
       if (updatedCustomerDetail){
         console.log(`onClose updatedCustomerDetail:`, updatedCustomerDetail.name);
