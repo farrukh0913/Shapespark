@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICustomerDetail } from '../customers.model';
@@ -47,9 +47,15 @@ export class EditCustomerDetailComponent {
   }
 
   close(customerDetail?: ICustomerDetail){
-    document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInDown")
+    document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInDown");
     document.getElementsByClassName("animate__animated")[0].classList.add("animate__slideOutDown");
-    setTimeout(()=>{this.dialogRef.close(customerDetail);}, 1000);
+    setTimeout(()=>{
+      if (customerDetail){
+        this.dialogRef.close(customerDetail);
+      }else{
+        this.dialogRef.close();
+      }
+    }, 1000);
   }
 
 }
