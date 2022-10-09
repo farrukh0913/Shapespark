@@ -7,11 +7,16 @@ import { take } from 'rxjs/operators';
 import { EditCustomerDetailComponent } from '../edit-customer-detail/edit-customer-detail.component';
 import { CustomersService } from '../customers.service';
 import { ICustomerDetail, ICustomersList, ITableColumns } from '../customers.model';
+import { slideInOutAnimation } from 'src/app/animation';
 
 @Component({
   selector: 'customer-detail',
   templateUrl: './customer-detail.component.html',
-  styleUrls: ['./customer-detail.component.scss']
+  styleUrls: ['./customer-detail.component.scss'],
+    // make fade in animation available to this component
+    animations: [slideInOutAnimation],
+    // attach the fade in animation to the host (root) element of this component
+    host: { '[@slideInOutAnimation]': '' }
 })
 
 export class CustomerDetailComponent {

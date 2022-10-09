@@ -5,11 +5,16 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { CustomersService } from '../customers.service';
 import { ICustomersList, ITableColumns } from '../customers.model';
+import { fadeInAnimation } from 'src/app/animation';
 
 @Component({
   selector: 'customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss']
+  styleUrls: ['./customers.component.scss'],
+  // make fade in animation available to this component
+  animations: [fadeInAnimation],
+  // attach the fade in animation to the host (root) element of this component
+  host: { '[@fadeInAnimation]': '' }
 })
 
 export class CustomersComponent {
